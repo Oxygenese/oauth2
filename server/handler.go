@@ -48,7 +48,7 @@ type (
 	// ResponseTokenHandler response token handing
 	ResponseTokenHandler func(w http.ResponseWriter, data map[string]interface{}, header http.Header, statusCode ...int) error
 
-	ExtensionClaimHandler func(interface{}) error
+	ExtensionClaimHandler func(tgr *oauth2.TokenGenerateRequest)
 )
 
 // ClientFormHandler get client data from form

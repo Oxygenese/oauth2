@@ -13,21 +13,26 @@ func NewToken() *Token {
 
 // Token token model
 type Token struct {
-	ClientID            string        `bson:"client_id"`
-	UserID              string        `bson:"user_id"`
-	RedirectURI         string        `bson:"redirect_uri"`
-	Scope               string        `bson:"scope"`
-	Code                string        `bson:"code"`
-	CodeChallenge       string        `bson:"code_challenge"`
-	CodeChallengeMethod string        `bson:"code_challenge_method"`
-	CodeCreateAt        time.Time     `bson:"code_create_at"`
-	CodeExpiresIn       time.Duration `bson:"code_expires_in"`
-	AccessToken         string        `bson:"access_token"`
-	AccessCreateAt      time.Time     `bson:"access_create_at"`
-	AccessExpiresIn     time.Duration `bson:"access_expires_in"`
-	RefreshToken        string        `bson:"refresh_token"`
-	RefreshCreateAt     time.Time     `bson:"refresh_create_at"`
-	RefreshExpiresIn    time.Duration `bson:"refresh_expires_in"`
+	ClientID            string        `bson:"client_id" json:"client_id" json:"client_id,omitempty"`
+	UserID              string        `bson:"user_id" json:"user_id" json:"user_id,omitempty"`
+	RedirectURI         string        `bson:"redirect_uri" json:"redirect_uri" json:"redirect_uri,omitempty"`
+	Scope               string        `bson:"scope" json:"scope,omitempty"`
+	Code                string        `bson:"code" json:"code,omitempty"`
+	CodeChallenge       string        `bson:"code_challenge" json:"code_challenge,omitempty"`
+	CodeChallengeMethod string        `bson:"code_challenge_method" json:"code_challenge_method,omitempty"`
+	CodeCreateAt        time.Time     `bson:"code_create_at" json:"code_create_at"`
+	CodeExpiresIn       time.Duration `bson:"code_expires_in" json:"code_expires_in,omitempty"`
+	AccessToken         string        `bson:"access_token" json:"access_token,omitempty"`
+	AccessCreateAt      time.Time     `bson:"access_create_at" json:"access_create_at"`
+	AccessExpiresIn     time.Duration `bson:"access_expires_in" json:"access_expires_in,omitempty"`
+	RefreshToken        string        `bson:"refresh_token" json:"refresh_token,omitempty"`
+	RefreshCreateAt     time.Time     `bson:"refresh_create_at" json:"refresh_create_at"`
+	RefreshExpiresIn    time.Duration `bson:"refresh_expires_in" json:"refresh_expires_in,omitempty"`
+	ExtensionClaims     interface{}   `bson:"extension_claims" json:"extension_claims"`
+}
+
+func (t *Token) SetExtensionClaims(claim interface{}) {
+	t.ExtensionClaims = claim
 }
 
 // New create to token model instance

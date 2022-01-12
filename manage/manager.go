@@ -218,7 +218,7 @@ func (m *Manager) GenerateAuthToken(ctx context.Context, rt oauth2.ResponseType,
 	}
 	return ti, nil
 }
- 
+
 // get authorization code data
 func (m *Manager) getAuthorizationCode(ctx context.Context, code string) (oauth2.TokenInfo, error) {
 	ti, err := m.tokenStore.GetByCode(ctx, code)
@@ -316,10 +316,11 @@ func (m *Manager) GenerateAccessToken(ctx context.Context, gt oauth2.GrantType, 
 	ti.SetUserID(tgr.UserID)
 	ti.SetRedirectURI(tgr.RedirectURI)
 	ti.SetScope(tgr.Scope)
-
+	if tgr.ExtensionClaims != nil {
+		ti.SetExtensionClaims(tgr.ExtensionClaims)
+	}
 	createAt := time.Now()
 	ti.SetAccessCreateAt(createAt)
-
 	// set access token expires
 	gcfg := m.grantConfig(gt)
 	aexp := gcfg.AccessTokenExp
