@@ -35,6 +35,10 @@ func (t *Token) SetExtensionClaims(claim interface{}) {
 	t.ExtensionClaims = claim
 }
 
+func (t *Token) GetExtensionClaims() interface{} {
+	return t.ExtensionClaims
+}
+
 // New create to token model instance
 func (t *Token) New() oauth2.TokenInfo {
 	return NewToken()
