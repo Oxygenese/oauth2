@@ -55,5 +55,8 @@ type (
 		SetRefreshCreateAt(time.Time)
 		GetRefreshExpiresIn() time.Duration
 		SetRefreshExpiresIn(time.Duration)
+
+		SetExtensionClaims(claim interface{})
+		GetExtensionClaims() interface{}
 	}
 )
