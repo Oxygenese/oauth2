@@ -3,11 +3,11 @@ package store
 import (
 	"context"
 	"fmt"
-	"github.com/go-oauth2/oauth2/v4"
-	"github.com/go-oauth2/oauth2/v4/models"
 	"github.com/go-redis/redis/v8"
 	"github.com/google/uuid"
 	jsoniter "github.com/json-iterator/go"
+	"github.com/mars-projects/oauth2/v4"
+	"github.com/mars-projects/oauth2/v4/models"
 	"time"
 )
 

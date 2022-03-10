@@ -6,9 +6,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/go-oauth2/oauth2/v4"
-	"github.com/go-oauth2/oauth2/v4/models"
-	"github.com/go-oauth2/oauth2/v4/store"
+	"github.com/mars-projects/oauth2/v4"
+	"github.com/mars-projects/oauth2/v4/models"
+	"github.com/mars-projects/oauth2/v4/store"
 
 	. "github.com/smartystreets/goconvey/convey"
 )
@@ -63,7 +63,6 @@ func testToken(store oauth2.TokenStore) {
 			UserID:          "1_1",
 			RedirectURI:     "http://localhost/",
 			Scope:           "all",
-			Access:          "1_1_1",
 			AccessCreateAt:  time.Now(),
 			AccessExpiresIn: time.Second * 5,
 		}
@@ -89,10 +88,10 @@ func testToken(store oauth2.TokenStore) {
 			UserID:           "1_2",
 			RedirectURI:      "http://localhost/",
 			Scope:            "all",
-			Access:           "1_2_1",
+			AccessToken:      "1_2_1",
 			AccessCreateAt:   time.Now(),
 			AccessExpiresIn:  time.Second * 5,
-			Refresh:          "1_2_2",
+			RefreshToken:     "1_2_2",
 			RefreshCreateAt:  time.Now(),
 			RefreshExpiresIn: time.Second * 15,
 		}
@@ -118,10 +117,10 @@ func testToken(store oauth2.TokenStore) {
 			UserID:           "1_1",
 			RedirectURI:      "http://localhost/",
 			Scope:            "all",
-			Access:           "1_3_1",
+			AccessToken:      "1_3_1",
 			AccessCreateAt:   time.Now(),
 			AccessExpiresIn:  time.Second * 1,
-			Refresh:          "1_3_2",
+			RefreshToken:     "1_3_2",
 			RefreshCreateAt:  time.Now(),
 			RefreshExpiresIn: time.Second * 1,
 		}
@@ -129,10 +128,10 @@ func testToken(store oauth2.TokenStore) {
 		So(err, ShouldBeNil)
 
 		time.Sleep(time.Second * 1)
-		ainfo, err := store.GetByAccess(ctx, info.Access)
+		ainfo, err := store.GetByAccess(ctx, info.AccessToken)
 		So(err, ShouldBeNil)
 		So(ainfo, ShouldBeNil)
-		rinfo, err := store.GetByRefresh(ctx, info.Refresh)
+		rinfo, err := store.GetByRefresh(ctx, info.RefreshToken)
 		So(err, ShouldBeNil)
 		So(rinfo, ShouldBeNil)
 	})
